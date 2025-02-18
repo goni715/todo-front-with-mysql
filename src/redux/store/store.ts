@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { baseApi } from '../features/api/baseApi'
 
 
 export const store = configureStore({
   reducer: {
-    posts: postsReducer
+    [baseApi.reducerPath]: baseApi.reducer
   },
 })
 
