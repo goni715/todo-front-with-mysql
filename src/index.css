@@ -1,3 +1,18 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+:root {
+    color-scheme: light !important;
+  }
+  
+  html {
+    background-color: white;
+    color: black;
+  }
+  
+  /* Ensure no dark mode styles are applied */
+  .dark {
+    display: none !important;
+  }
+  
+
