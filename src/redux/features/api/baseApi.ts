@@ -5,15 +5,21 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const baseApi = createApi({
   reducerPath: 'pokemonApi',
   baseQuery: fetchBaseQuery({
-     baseUrl: 'http://localhost:5000/api/v1' 
+     baseUrl: 'http://localhost:5000/api/v1/todo' 
   }),
   endpoints: (builder) => ({
     getPokemonByName: builder.query({
       query: (name) => `pokemon/${name}`,
     }),
+    getAllTodos: builder.query({
+      query: () => ({
+        url: '/get-all-todos',
+        method: 'GET'
+      })
+    })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery } = baseApi
+export const { useGetPokemonByNameQuery,  useGetAllTodosQuery} = baseApi;
