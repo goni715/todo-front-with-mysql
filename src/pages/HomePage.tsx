@@ -5,7 +5,7 @@ import { ITodo } from "../types/todo.type";
 const HomePage = () => {
   const { data, isLoading } = useGetAllTodosQuery(undefined);
 
-  if (isLoading) {
+  if (isLoading===false) {
     return <h1>Loading...</h1>;
   }
 
