@@ -1,5 +1,6 @@
 
 import { ITodo } from './../types/todo.type';
+import Todo from './Todo';
 const TodoTable = ({data} : {data: ITodo[]}) => {
     return (
         <>

@@ -5,7 +5,7 @@ const ListLoading = () => {
       <>
         <div className="bg-white p-3 mt-3 shadow-md rounded-md">
           <div className="flex flex-col gap-6 animate-pulse">
-            {loadingArray?.map((item, i) => (
+            {loadingArray?.map((_item, i) => (
               <>
                 <div
                   key={i}

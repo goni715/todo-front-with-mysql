@@ -1,11 +1,12 @@
 import Todo from "../components/Todo";
+import TodoTable from "../components/TodoTable";
 import { useGetAllTodosQuery } from "../redux/features/api/baseApi";
 import { ITodo } from "../types/todo.type";
 
 const HomePage = () => {
   const { data, isLoading } = useGetAllTodosQuery(undefined);
 
-  if (isLoading===false) {
+  if (isLoading) {
     return <h1>Loading...</h1>;
   }
 
@@ -20,7 +21,7 @@ const HomePage = () => {
   if (data?.length > 0) {
     return (
       <>
-        
+        <TodoTable data={data}/>
       </>
     );
   }
