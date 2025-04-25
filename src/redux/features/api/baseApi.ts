@@ -16,10 +16,18 @@ export const baseApi = createApi({
         url: '/get-all-todos',
         method: 'GET'
       })
+    }),
+    createTodo: builder.mutation({
+      query: (data) => ({
+        url: '/create-todo',
+        method: 'POST',
+        body: data
+      })
     })
+
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery,  useGetAllTodosQuery} = baseApi;
+export const { useGetPokemonByNameQuery,  useGetAllTodosQuery, useCreateTodoMutation} = baseApi;
