@@ -12,7 +12,7 @@ const Todo = ({item, index}: TProps) => {
     return (
         <>
            <tr>
-                <td className="px-4 py-2 border border-gray-300 whitespace-nowrap">
+                <td className="px-4 py-2 border border-gray-300 whitespace-nowrap text-center">
                  {Number(index+1)}
                 </td>
                 <td className="px-4 py-2 border border-gray-300 whitespace-nowrap">
