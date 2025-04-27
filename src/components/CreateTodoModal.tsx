@@ -9,6 +9,11 @@ const CreateTodoModal = () => {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  }
+
+
   return (
     <>
       <button
@@ -24,57 +29,59 @@ const CreateTodoModal = () => {
             <h2 className="text-xl font-semibold mb-4">Add New Todo</h2>
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-black bg-gray-200 p-2 rounded-md cursor-pointer"
+              className="absolute top-2 right-2 text-black bg-gray-200 hover:bg-gray-400 p-2 rounded-md cursor-pointer"
             >
               <IoMdClose size={20} />
             </button>
-            <div className="mb-6">
-              <label
-                htmlFor="inputField"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Full Name
-              </label>
-              <input
-                id="inputField"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter your name"
-              />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-6">
+                <label
+                  htmlFor="inputField"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Full Name
+                </label>
+                <input
+                  id="inputField"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your name"
+                />
+              </div>
 
-            <div className="mb-6">
-              <label
-                htmlFor="emailField"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email Address
-              </label>
-              <input
-                id="emailField"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div className="flex gap-x-3 justify-end">
-              <button
-                onClick={closeModal}
-                className="px-6 py-2 bg-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              >
-                Close
-              </button>
-              <button
-                onClick={closeModal}
-                className="px-6 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                Add
-              </button>
-            </div>
+              <div className="mb-6">
+                <label
+                  htmlFor="emailField"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email Address
+                </label>
+                <input
+                  id="emailField"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div className="flex gap-x-3 justify-end">
+                <button
+                  onClick={closeModal}
+                  className="px-6 py-2 bg-gray-300 rounded-lg text-sm cursor-pointer text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
