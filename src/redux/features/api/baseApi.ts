@@ -7,6 +7,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
      baseUrl: 'http://localhost:5000/api/v1/todo' 
   }),
+  tagTypes: ["Todos"],
   endpoints: (builder) => ({
     getPokemonByName: builder.query({
       query: (name) => `pokemon/${name}`,
@@ -15,14 +16,16 @@ export const baseApi = createApi({
       query: () => ({
         url: '/get-all-todos',
         method: 'GET'
-      })
+      }),
+      providesTags: ["Todos"]
     }),
     createTodo: builder.mutation({
       query: (data) => ({
         url: '/create-todo',
         method: 'POST',
         body: data
-      })
+      }),
+      invalidatesTags: ["Todos"]
     })
 
   }),

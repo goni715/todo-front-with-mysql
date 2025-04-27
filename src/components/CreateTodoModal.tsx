@@ -1,16 +1,28 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { ErrorToast, SuccessToast } from "../helper/ValidationHelper";
+import { useCreateTodoMutation } from "../redux/features/api/baseApi";
 
 const CreateTodoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [createTodo, { isLoading }] = useCreateTodoMutation()
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try{
+      await createTodo({ name, email }).unwrap();
+      SuccessToast("Todo is created Successfully");
+      closeModal();
+    }
+    // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
+    catch(err:any){
+      ErrorToast("Something Went Wrong")
+    }
   }
 
 
@@ -48,6 +60,7 @@ const CreateTodoModal = () => {
                   onChange={(e) => setName(e.target.value)}
                   className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your name"
+                  required
                 />
               </div>
 
@@ -65,6 +78,7 @@ const CreateTodoModal = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-2 px-4 py-2 w-full border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your email"
+                  required
                 />
               </div>
               <div className="flex gap-x-3 justify-end">
@@ -76,7 +90,8 @@ const CreateTodoModal = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  disabled={isLoading}
+                  className="px-6 py-2 cursor-pointer bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed"
                 >
                   Add
                 </button>
