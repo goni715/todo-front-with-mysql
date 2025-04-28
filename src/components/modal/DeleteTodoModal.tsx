@@ -2,15 +2,14 @@ import { Modal } from "antd";
 import { useEffect, useState } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { useDeleteCuisineMutation } from "../../../redux/features/cuisine/cuisineApi";
-
+import { useDeleteTodoMutation } from "../../redux/features/api/baseApi";
 
 
 
 
 const DeleteTodoModal = ({ cuisineId }) => {
     const [ modalOpen, setModalOpen ] = useState(false);
-    const [ deleteCuisine, { isLoading, isSuccess, isError }] = useDeleteCuisineMutation();
+    const [ deleteCuisine, { isLoading, isSuccess, isError }] = useDeleteTodoMutation();
 
     useEffect(()=> {
         if(isSuccess || isError){

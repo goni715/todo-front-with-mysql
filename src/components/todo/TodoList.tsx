@@ -1,5 +1,5 @@
-import TodoTable from "../components/TodoTable";
-import { useGetAllTodosQuery } from "../redux/features/api/baseApi";
+import TodoTable from "./TodoTable";
+import { useGetAllTodosQuery } from "../../redux/features/api/baseApi";
 
 const TodoList = () => {
   const { data, isLoading } = useGetAllTodosQuery(undefined);
@@ -19,11 +19,10 @@ const TodoList = () => {
   if (data?.length > 0) {
     return (
       <>
-        <TodoTable data={data}/>
+        <TodoTable data={data} />
       </>
     );
   }
-
 };
 
 export default TodoList;
