@@ -1,5 +1,6 @@
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { ITodo } from "../types/todo.type";
+import DeleteTodoModal from "../modal/DeleteTodoModal";
 
 type TProps = {
     item: ITodo,
@@ -25,9 +26,7 @@ const Todo = ({item, index}: TProps) => {
                   <button className="bg-green-500 p-2 rounded-full text-white text-xl cursor-pointer">
                     <FaEdit />
                   </button>
-                  <button className="bg-red-500 p-2 rounded-full text-white text-xl cursor-pointer">
-                    <FaRegTrashAlt />
-                  </button>
+                  <DeleteTodoModal todoId={item?.id}/>
                 </td>
               </tr>
               
