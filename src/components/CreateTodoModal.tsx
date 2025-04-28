@@ -2,29 +2,33 @@ import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { ErrorToast, SuccessToast } from "../helper/ValidationHelper";
 import { useCreateTodoMutation } from "../redux/features/api/baseApi";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const CreateTodoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [createTodo, { isLoading }] = useCreateTodoMutation()
+  const [createTodo, { isLoading }] = useCreateTodoMutation();
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try{
+    try {
       await createTodo({ name, email }).unwrap();
       SuccessToast("Todo is created Successfully");
       closeModal();
+    } catch (err: any) {
+      // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
+      const status = err?.status;
+      if (status === 409) {
+        ErrorToast("This Email is already exists");
+      } else {
+        ErrorToast("Something Went Wrong");
+      }
     }
-    // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
-    catch(err:any){
-      ErrorToast("Something Went Wrong")
-    }
-  }
-
+  };
 
   return (
     <>
@@ -84,16 +88,23 @@ const CreateTodoModal = () => {
               <div className="flex gap-x-3 justify-end">
                 <button
                   onClick={closeModal}
-                  className="px-6 py-2 bg-gray-300 rounded-lg text-sm cursor-pointer text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  className="px-6 py-2 bg-gray-300 rounded-lg text-sm cursor-pointer text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-gray-500"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-6 py-2 cursor-pointer bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed"
+                  className="px-6 py-2 w-36 cursor-pointer bg-blue-500 text-white rounded-lg flex justify-center items-center gap-x-2 text-sm hover:bg-blue-600 focus:outline-none focus:ring-blue-500 disabled:cursor-not-allowed"
                 >
-                  Add
+                  {isLoading ? (
+                    <>
+                      <CgSpinnerTwo className="animate-spin" fontSize={16} />
+                      Processing...
+                    </>
+                  ) : (
+                    "Add"
+                  )}
                 </button>
               </div>
             </form>
