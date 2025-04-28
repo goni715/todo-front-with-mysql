@@ -26,11 +26,17 @@ export const baseApi = createApi({
         body: data
       }),
       invalidatesTags: ["Todos"]
+    }),
+    deleteTodo: builder.mutation({
+      query: (id) => ({
+        url: `/delete-todo/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ["Todos"]
     })
-
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery,  useGetAllTodosQuery, useCreateTodoMutation} = baseApi;
+export const { useGetPokemonByNameQuery,  useGetAllTodosQuery, useCreateTodoMutation, useDeleteTodoMutation} = baseApi;
