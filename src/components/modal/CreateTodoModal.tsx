@@ -19,8 +19,8 @@ const CreateTodoModal = () => {
       await createTodo({ name, email }).unwrap();
       SuccessToast("Todo is created Successfully");
       closeModal();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      // eslint-disable-next-line no-empty, @typescript-eslint/no-unused-vars
       const status = err?.status;
       if (status === 409) {
         ErrorToast("This Email is already exists");

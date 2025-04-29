@@ -25,6 +25,7 @@ const DeleteTodoModal = ({ todoId }: TProps) => {
       try{
         await deleteTodo(todoId).unwrap();
         SuccessToast("Todo is deleted successfully");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       }catch(err:any){
         ErrorToast("Somethinng Went Wrong");
       }

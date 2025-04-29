@@ -1,6 +1,6 @@
-import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
-import { ITodo } from "../types/todo.type";
+import { FaEdit } from "react-icons/fa";
 import DeleteTodoModal from "../modal/DeleteTodoModal";
+import { ITodo } from "../../types/todo.type";
 
 type TProps = {
     item: ITodo,
