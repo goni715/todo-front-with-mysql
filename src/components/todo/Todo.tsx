@@ -1,6 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import DeleteTodoModal from "../modal/DeleteTodoModal";
 import { ITodo } from "../../types/todo.type";
+import { useNavigate } from "react-router-dom";
 
 type TProps = {
     item: ITodo,
@@ -8,6 +9,7 @@ type TProps = {
 }
 
 const Todo = ({item, index}: TProps) => {
+  const navigate = useNavigate();
    
     
     return (
@@ -23,7 +25,7 @@ const Todo = ({item, index}: TProps) => {
                   {item?.email}
                 </td>
                 <td className="px-4 py-2 border border-gray-300 whitespace-nowrap flex items-center justify-center gap-3">
-                  <button className="bg-green-500 p-2 rounded-full text-white text-xl cursor-pointer">
+                  <button onClick={()=>navigate(`/todo/${item?.id}`)} className="bg-green-500 p-2 rounded-full text-white text-xl cursor-pointer">
                     <FaEdit />
                   </button>
                   <DeleteTodoModal todoId={item?.id}/>
