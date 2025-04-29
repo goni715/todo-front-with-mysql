@@ -1,23 +1,28 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { ITodo } from '../../../types/todo.type';
 
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
-  reducerPath: 'pokemonApi',
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
      baseUrl: 'http://localhost:5000/api/v1/todo' 
   }),
-  tagTypes: ["Todos"],
+  tagTypes: ["Todos", "Todo"],
   endpoints: (builder) => ({
-    getPokemonByName: builder.query({
-      query: (name) => `pokemon/${name}`,
-    }),
     getAllTodos: builder.query({
       query: () => ({
         url: '/get-all-todos',
         method: 'GET'
       }),
       providesTags: ["Todos"]
+    }),
+    getSingleTodo: builder.query<ITodo, string>({
+      query: (id) => ({
+        url: `/todo/get-single-todo/${id}`,
+        method: "GET",
+      }),
+      providesTags: (_result, _error, arg) => [ {type: "Todo", id:arg}]
     }),
     createTodo: builder.mutation({
       query: (data) => ({
@@ -39,4 +44,4 @@ export const baseApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery,  useGetAllTodosQuery, useCreateTodoMutation, useDeleteTodoMutation} = baseApi;
+export const { useGetAllTodosQuery, useGetSingleTodoQuery, useCreateTodoMutation, useDeleteTodoMutation} = baseApi;
