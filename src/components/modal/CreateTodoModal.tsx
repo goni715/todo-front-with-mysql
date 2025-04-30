@@ -40,7 +40,7 @@ const CreateTodoModal = () => {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md mx-4 shadow-xl relative">
             <h2 className="text-xl font-semibold mb-4">Add New Todo</h2>
             <button

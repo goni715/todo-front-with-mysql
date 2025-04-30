@@ -7,14 +7,13 @@ import TodoNotFoundCard from "../card/TodoNotFoundCard";
 const TodoEdit = () => {
     const { id } = useParams();
     const {data, isLoading} = useGetSingleTodoQuery(id as string);
-    const todo = data;
-    console.log(todo);
+    const todo = data?.data;
 
     if(isLoading){
        return <TodoUpdateLoading/>
     }
-    if(!isLoading && todo){
-        return <TodoUpdateForm/>
+    if(!isLoading && todo?.id){
+        return <TodoUpdateForm todo={todo}/>
     }
     if(!isLoading && !todo){
         return <TodoNotFoundCard/>
