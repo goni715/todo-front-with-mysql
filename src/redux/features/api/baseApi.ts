@@ -1,6 +1,5 @@
 // Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { ITodo } from '../../../types/todo.type';
 
 // Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
@@ -17,9 +16,9 @@ export const baseApi = createApi({
       }),
       providesTags: ["Todos"]
     }),
-    getSingleTodo: builder.query<ITodo, string>({
+    getSingleTodo: builder.query({
       query: (id) => ({
-        url: `/todo/get-single-todo/${id}`,
+        url: `/get-single-todo/${id}`,
         method: "GET",
       }),
       providesTags: (_result, _error, arg) => [ {type: "Todo", id:arg}]

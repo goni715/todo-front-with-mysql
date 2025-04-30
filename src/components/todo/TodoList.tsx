@@ -1,11 +1,12 @@
 import TodoTable from "./TodoTable";
 import { useGetAllTodosQuery } from "../../redux/features/api/baseApi";
+import ListLoading from "../Loader/ListLoading";
 
 const TodoList = () => {
   const { data, isLoading } = useGetAllTodosQuery(undefined);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <ListLoading/>;
   }
 
   if (data?.length === 0) {
