@@ -5,7 +5,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/todo",
+    //baseUrl: "http://localhost:5000/api/v1/todo",
+    baseUrl: "https://todo-server-with-mysql.vercel.app/api/v1/todo",
   }),
   tagTypes: ["Todos", "Todo"],
   endpoints: (builder) => ({
