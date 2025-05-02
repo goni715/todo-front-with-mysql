@@ -6,7 +6,7 @@ const TodoTable = ({ data }: { data: ITodo[] }) => {
       <div className="p-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
-            <thead>
+            <thead className="">
               <tr>
                 <th className="px-4 py-2 border border-gray-300 whitespace-nowrap">
                   Serial

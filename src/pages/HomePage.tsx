@@ -4,12 +4,14 @@ import TodoList from "../components/todo/TodoList";
 const HomePage = () => {
   return (
     <>
-      <div className="p-6">
-        <div className="bg-white shadow-md min-h-[70vh] rounded-lg">
-          <div className="py-4 px-8 flex justify-end">
+      <div className="">
+        <div className="bg-white shadow-md rounded-lg">
+          <div className="py-4 px-8 flex justify-end fixed w-full top-0 right-0 bg-gray-900">
             <CreateTodoModal />
           </div>
+          <div className="mt-[80px] p-6">
           <TodoList />
+          </div>
         </div>
       </div>
     </>
