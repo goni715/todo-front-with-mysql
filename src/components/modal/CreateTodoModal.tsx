@@ -18,6 +18,8 @@ const CreateTodoModal = () => {
     try {
       await createTodo({ name, email }).unwrap();
       SuccessToast("Todo is created Successfully");
+      setName("");
+      setEmail("");
       closeModal();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -88,14 +90,14 @@ const CreateTodoModal = () => {
               <div className="flex gap-x-3 justify-end">
                 <button
                   onClick={closeModal}
-                  className="px-6 py-2 bg-gray-300 rounded-lg text-sm cursor-pointer text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-gray-500"
+                  className="px-6 py-2 w-full sm:w-auto bg-gray-300 rounded-lg text-sm cursor-pointer text-gray-700 hover:bg-gray-400 focus:outline-none focus:ring-gray-500"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-6 py-2 w-36 cursor-pointer bg-blue-500 text-white rounded-lg flex justify-center items-center gap-x-2 text-sm hover:bg-blue-600 focus:outline-none focus:ring-blue-500 disabled:cursor-not-allowed"
+                  className="px-6 py-2 w-auto sm:w-36 cursor-pointer bg-blue-500 text-white rounded-lg flex justify-center items-center gap-x-2 text-sm hover:bg-blue-600 focus:outline-none focus:ring-blue-500 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <>
